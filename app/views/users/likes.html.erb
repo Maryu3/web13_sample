@@ -1,0 +1,13 @@
+<h1>お気に入り一覧</h1>
+<div>
+	<% @user.likes.map { |l| l.post }.each do |post| %>
+		<div class="fabTitle">
+			タイトル:<%= post.title %>
+		</div>
+		<div class="fabBody">
+			本文:<%= post.body %>
+		</div>
+		
+	<% end%>
+</div>
+

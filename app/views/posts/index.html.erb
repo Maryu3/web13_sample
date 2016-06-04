@@ -1,0 +1,45 @@
+<h1>投稿一覧</h1>
+
+<%= form_for(@post) do |f| %>
+	<div>
+	 タイトル:<%= f.text_field :title %>
+	</div>
+	<div>
+	本文:<%= f.text_area :body%>
+	</div>
+	<div>
+	<%= f.submit "投稿する" %>
+	</div>
+<% end %>	
+
+
+
+<% @posts.each do |post| %>
+	<h1>
+		<%= link_to "タイトル：#{post.title}" ,post_path(post) %>
+	</h1>
+
+	<div>
+		<% if post.liked_by?(current_user) %>
+			<%= link_to "いいね解除",post_likes_path(post),method: :delete %>
+		<% else %>
+			<%= link_to "いいね",post_likes_path(post),method: :post %>
+
+		<% end %>
+
+		
+	</div>
+	
+	<p>
+	　 投稿者:<%= post.user.try(:name) %>
+	</p>
+	
+<% end %>
+
+
+
+
+
+
+
+
